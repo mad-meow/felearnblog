@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>背景与边框</title>
+        <style media="screen">
+            div.exaple1 {
+                width: 200px;
+                height: 500px;
+                background-color: red;
+            }
+            div.exaple1>div{
+                width: 150px;
+                height: 200px;
+                margin:auto;
+                border: 10px solid hsla(0, 0, 100%, 0.5);
+                background-color: wihte;
+            }
+            .half-transparent-border {
+                background-clip: padding-box;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="exaple1">
+            <div>
+                normol box
+            </div>
+            <div class="half-transparent-border">
+                half transparent border box
+            </div>
+        </div>
+
+
+    </body>
+</html>
