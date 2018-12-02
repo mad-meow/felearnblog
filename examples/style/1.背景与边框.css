@@ -1,0 +1,23 @@
+.example1 {
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    background-color: black;
+}
+.example1>div{
+    width: 340px;
+    height: 30px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 10px solid hsla(0, 0%, 100%, 0.5);
+    background-color: white;
+    background-clip: border-box;
+}
+.example1>.padding-box {
+    background-color: yellow;
+    background-clip: padding-box;
+}
+.example1>.content-box {
+    background-color: yellow;
+    background-clip: content-box;
+}
