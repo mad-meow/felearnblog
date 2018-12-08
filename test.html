@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+        <style>
+            .testdiv {
+                background-color: red;
+                min-height: 100px;
+                padding: 5px;
+                margin: 20px;
+                max-width: 800px;
+                border: 20px solid lightgreen;
+                overflow: hidden;
+                /* word-break: break-all; */
+                word-wrap: break-word;
+            }
+            .testdiv2 {
+                background-color: yellow;
+                height: 200px;
+                width: 900px;
+            }
+            .testspan {
+                color: white;
+                border: 1px solid blue;
+                margin: 5px 20px;
+                padding: 15px
+            }
+        </style>
+    </head>
+    <body>
+        <div class="testdiv">
+            aaa
+            <span>aaa2</span><span class="testspan">bbb1</span><span class="testspan">bbb2</span>
+            <span class="testspan">bbb3</span>
+            cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+            <div class="testdiv2">
+                testdiv2
+            </div>
+        </div>
+    </body>
+</html>
