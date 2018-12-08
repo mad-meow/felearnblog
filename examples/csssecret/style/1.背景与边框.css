@@ -1,0 +1,40 @@
+.example {
+    float: left;
+    width: 400px;
+    height: 310px;
+    margin: 5px;
+    padding: 5px;
+    background-color: lightblue;
+    border: 1px solid blue;
+}
+.example>div {
+    width: 340px;
+    height: 30px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: rgb(250,245,103)
+}
+/* example1 */
+.example1>div{
+    border: 10px solid hsla(0, 0%, 100%, 0.5);
+}
+.example1>.padding-box {
+    background-clip: padding-box;
+}
+.example1>.content-box {
+    background-clip: content-box;
+}
+/* example2 */
+.example2>.multiborder-shadow {
+    width: 300px;
+    box-shadow: 0 0 0 5px #655,
+                0 0 0 10px deeppink,
+                0 2px 5px 15px rgba(0, 0, 0, .6);
+    border: 1px solid white;
+}
+.example2>.multiborder-shadow-inset {
+    box-shadow: 0 0 0 5px #655 inset,
+                0 0 0 10px deeppink inset,
+                0 2px 5px 15px rgba(0, 0, 0, .6) inset;
+    border: 1px solid white;
+}

@@ -15,7 +15,7 @@
 6. 对于引用的文件，按照引入位置，可以按以上规则解释  
 
 ## 2. [CSS伪元素与伪类](#css-pesudo-class-element)
-### [伪类:](#pesudo-classes)
+### [a) 伪类:](#pesudo-classes)
 伪类基于当前元素处于的特定**状态**。[参考链接](http://www.runoob.com/css/css-pseudo-classes.html)。
 1. **链接状态：** `:link, :visited, :hover, :active`;
 2. **表单状态：** `:checked, :enabled, :disabled, :valid, :invalid, :in-range, :out-of-range, :optional, :required, :read-only, :read-write, :focus, :default`
@@ -24,7 +24,10 @@
     - `:first-of-type, :last-of-type, :nth-of-type(n), :nth-last-of-type(n), :only-of-type`
 4. **其他：** `:root, :not(selector), :empty, :target, :lang(language)`   
 
-### [伪元素](#pesudo-elements)
+### [b) 伪元素](#pesudo-elements)
 伪元素对元素中的特定内容进行操作，其动态性低于伪类。事实上设计伪类的目的，就是去选取诸如第一个字母、第一行等。[参考链接](http://www.runoob.com/css/css-pseudo-elements.html)。  
 `::before, ::after, ::first-letter, ::first-line, ::selection`  
 >**注意：**`::`是CSS3中用来区别**伪类**与**伪元素**的标识，CSS2中只用`:`。
+
+## 3. [元素居中](#centering)
+### 
