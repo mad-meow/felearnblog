@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang=zh-cn dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>元素水平/垂直居中</title>
+    <style>
+        .vertically-container {
+            min-width: 900px;
+            min-height: 500px;
+            background-color: tan;
+        }
+        .vertically-board {
+            background-color: white;
+            margin: 10px 10px;
+            padding: 10px;
+        }
+        .vertically-board>* {
+            border: 1px dotted black;
+        }
+        .single-inline-vertically>* {
+            padding: 10px 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="vertically-container">
+        <p>1. 单行 inline 元素</p>
+        <div class="vertically-board single-inline-vertically">
+            <span>span</span>
+            <a href="#">link</a>
+            <span style="display:inline-block;padding:15px 3px;">inline-block span
+            </span>
+            设置相等的行内元素上下padding达到居中效果。
+        </div>
+        <div class="vertically-board" style="height:30px;line-height:30px">
+            |此div height=line-height=30px|
+            <span>span</span>
+            <span style="display:inline-block; height:35px">inline-block span，height=35px</span>
+            设置height, line-height达到居中。
+        </div>
+    </div>
+>
+
+</body>
+</html>

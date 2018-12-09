@@ -3,8 +3,73 @@
     <head>
         <meta charset="utf-8">
         <title>块元素与行内元素比较</title>
+        <style>
+            .container {
+                min-width: 900px;
+                min-height: 500px;
+                padding: 20px;
+                background-color: tan;
+            }
+            .block-ele {
+                width: 500px;
+                height: 200px;
+                background-color: darkseagreen;
+                padding: 15px;
+                margin: 20px;
+                border: 1px solid white;
+            }
+            .block-ele-inner-l1 {
+                height: 100px;
+                margin: 20px;
+                background-color: dodgerblue;
+                border: 1px solid white;
+            }
+            .span-border {
+                height: 50px;
+                width: 50px;
+                margin: 10px;
+                padding: 15px;
+                border: 2px dashed white;
+            }
+            .div-inline-block {
+                display: inline-block;
+                border: 2px dotted indigo;
+            }
+            .span-inline-block {
+                display: inline-block;
+                border: 2px dotted palegoldenrod;
+            }
+        </style>
     </head>
     <body>
+        <div class="container">
+            <div class="block-ele" style="height:50px">
+                块级div右侧位置不可用
+            </div>
+            <div class="block-ele" style="overflow:hidden">
+                <div class="block-ele-inner-l1">
+                    未指定宽度的块元素默认充满父级内容框
+                </div>
+                <div class="block-ele-inner-l1" style="width:600px">
+                    子元素所占宽、高超过父元素，且父元素设置了overflow:hidden。
+                    <br/>
+                    子元素超出<b>内侧border</b>的部分被裁剪。
+                </div>
+            </div>
+            <div class="block-ele" style="width:auto;height:auto">
+                <p>行内元素的示例</p>
+                <p>|文本1|<span>|span1|</span><span>|span2与1之间无空格|</span> <span>|span3与2之间有空格|</span></p>
+                <p style="word-break: break-all"><span class="span-border">垂直方向外边距(margin)无效；宽高设置无效</span><span>无样式span</span><span class="span-border">水平方向内/外边距有效</span>|其他文本，本p元素有设置word-break:break-all，使得文本可跨行，aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa|</p>
+                <div>
+                    <p style="color:maroon">display:inline 示例。对inlne-block元素设置高度及外边框后，会打乱对齐位置。</p>
+                    |文本|
+                    <div class="div-inline-block">div，未设置高宽</div>
+                    <div class="div-inline-block" style="height:30px; width:120px; margin:5px;">div，设置高宽及外边距</div>
+                    <span class="span-inline-block">span，未设置宽高</span>
+                    <span class="span-inline-block" style="height:35px; width:120px; margin:7px">span，设置宽高及外边框</span>
+                </div>
+            </div>
+        </div>
 
     </body>
 </html>
