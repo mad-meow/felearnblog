@@ -4,45 +4,137 @@
     <meta charset="utf-8">
     <title>元素水平/垂直居中</title>
     <style>
-        .vertically-container {
-            min-width: 900px;
-            min-height: 500px;
-            background-color: tan;
-        }
-        .vertically-board {
-            background-color: white;
-            margin: 10px 10px;
-            padding: 10px;
-        }
-        .vertically-board>* {
-            border: 1px dotted black;
-        }
-        .single-inline-vertically>* {
-            padding: 10px 5px;
-        }
-
-
+    .vertical-container {
+        min-width: 900px;
+        min-height: 500px;
+        background-color: tan;
+        padding: 5px;
+        word-break: break-all;
+    }
+    .vertical-board {
+        background-color: white;
+        margin: 10px 10px;
+        padding: 10px;
+    }
+    .vertical-board>* {
+        border: 1px dotted black;
+    }
+    .single-inline-vertical>* {
+        padding: 10px 5px;
+    }
+    .center-table {
+        background-color: white;
+        width: 300px;
+        height: 200px;
+        margin: 20px;
+    }
+    .center-td {
+        background-color: black;
+        color: white;
+        padding: 20px;
+        border: 3px solid bisque;
+        vertical-align: middle; /*default*/
+    }
+    .not-center-td {
+        background-color: black;
+        color: white;
+        padding: 20px;
+        border: 3px solid bisque;
+        vertical-align: top;
+    }
+    .center-div-table {
+        display: table;
+        background-color: white;
+        width: 300px;
+        height: 200px;
+        margin: 20px;
+    }
+    .center-div-tcell {
+        display: table-cell;
+        background: black;
+        color: white;
+        padding: 20px;
+        border: 3px solid bisque;
+        vertical-align: middle;
+    }
+    .not-center-div-tcell {
+        display: table-cell;
+        background: black;
+        color: white;
+        padding: 20px;
+        border: 3px solid bisque;
+        vertical-align: top;
+    }
+    .vertical-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 350px;
+        height: 200px;
+    }
+    .vertical-flex-item {
+        margin: 5px;
+        padding: 5px;
+        background-color: black;
+        color: white;
+    }
+    .vertical-pesudo {
+        width: 300px;
+        height: 250px;
+        position: relative;
+    }
+    .vertical-pesudo::before {
+        content: " ";
+        display: inline-block;
+        height: 100%;
+        width: 1%;
+        vertical-align: middle;
+    }
+    .vertical-pesudo-item {
+        display: inline-block;
+        width: 70%;
+        vertical-align: middle;
+    }
     </style>
 </head>
 <body>
-
-    <div class="vertically-container">
+    <div class="vertical-container">
         <p>1. 单行 inline 元素</p>
-        <div class="vertically-board single-inline-vertically">
+        <div class="vertical-board single-inline-vertical">
             <span>span</span>
             <a href="#">link</a>
             <span style="display:inline-block;padding:15px 3px;">inline-block span
             </span>
-            设置相等的行内元素上下padding达到居中效果。
+            在行内元素上下设置相等的padding达到居中的视觉效果。
         </div>
-        <div class="vertically-board" style="height:30px;line-height:30px">
+        <div class="vertical-board" style="height:30px;line-height:30px">
             |此div height=line-height=30px|
             <span>span</span>
             <span style="display:inline-block; height:35px">inline-block span，height=35px</span>
             设置height, line-height达到居中。
         </div>
+        <p>2. 多行 inline 文本</p>
+        <p> 2.1 使用 table 布局</p>
+        <table class="center-table">
+            <tr>
+                <td class="center-td">table元素 multi line text multi line text multi line text multi line text</td>
+                <td class="not-center-td">ulti line text multi line text multi line text multi line text</td>
+            </tr>
+        </table>
+        <div class="center-div-table">
+            <div class="center-div-tcell">display:table-cell元素 multi line text multi line text multi line text multi line text</div>
+            <div class="not-center-div-tcell">ulti line text multi line text multi line text multi line text</div>
+        </div>
+        <p>2.2 使用flex布局</p>
+        <div class="vertical-board vertical-flex" >
+            <div class="vertical-flex-item">multi line text multi line text multi line text multi line text multi line text multi line text multi line text multi line text</div>
+        </div>
+        <p>2.3 使用 ::before 伪元素</p>
+        <div class="vertical-board vertical-pesudo">
+            <span class="vertical-pesudo-item">使用伪元素垂直居中 multi line text multi line text multi line text multi line text multi line text multi line text multi line text multi line text</span>
+        </div>
     </div>
->
+
 
 </body>
 </html>

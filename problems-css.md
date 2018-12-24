@@ -57,8 +57,26 @@ html中的元素标签可以分为**块元素**和**行内元素**两大类，�
 ### a) [元素水平居中](#horizontally)
 - `inline`, `inline-block`, `inline-table`, `inline-flex`等元素: 使用`text-align: center;`属性；
 - 单个块级元素：`margin-left:auto; margin-right:auto;`属性；
-- 多个块级元素在同一行：方法一：使用`display:inline-block`转变元素展示类型，同时父元素使用`text-align:center`；方法二：使用**flex**布局，父元素上使用`display:flex; justify-content:center`。
+- 多个块级元素在同一行：
+    1. 使用`display:inline-block`转变元素展示类型，同时父元素使用`text-align:center`。
+    2. 使用**flex**布局，父元素上使用`display:flex; justify-content:center`。
 
 ### b) [元素垂直居中](#vertically)
-- 单行`inline`或`inline-*`元素：方法一：设置相等padding; 方法二：父级块元素将`line-height`与`height`设置相等。
-- 连续多行文本：
+- 行内元素(`inline`)
+    - 单行`inline`或`inline-*`元素：
+        1. 居中行内元素设置相等padding。
+        2. 父级块元素将`line-height`与`height`设置相等。
+    - 连续多行文本(`inline`元素)：
+        1. 行内元素上设置相等的padding。
+        2. 使用table布局(不推荐)。`table > tr > td`或者用`display:table, display:table-cell`实现table样式。再在要居中的元素上添加`vertical-align:middle`。
+        3. 使用**flex**布局。父元素上设置`display:flex; flex-direction:column; justify-content:center`等属性。**注意：此方法中的父元素必须要有高度(height)定义**。
+        4. 使用`::before`伪元素。将伪元素(`display:inline-block`)高度设置为100%并居中，其他内容则会与之对齐。
+- 块元素(`block`)
+    - **已知** 居中块元素的高度：使用`absolute`定位下移50%(`top:50%`)，再用负外边框上移(`margin-top:-height/2`)。**注意：`box-sizing`的默认属性`content-box`指定的高度不含padding，此时`margin-top:-height/2+padding`。**
+    - **未知** 居中块元素的高度：使用`absolute`定位下移50%(`top:50%`)，再用`transform:translateY(-50%)`将元素上移。
+    - 使用**flex**布局：父级设置`display:flex; flex-direction:column; justify-content:center;`或者设置`display:flex; flex-direction:row; align-items:center;`。**注意：`flex-direction`属性是定义主轴(main-axis)方向，即主轴和交叉轴(cross-axis)是可以互换的。**[flex布局参考链接](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)。
+
+### c) [元素水平垂直居中](#horizontally-vertically)
+- **已知** 居中元素宽度和高度：使用`absolute`定位，向下、向左移50%(`top:50%; left:50%;`)，再用负外边距反向移动(`margin-top:-height/2; margin-left:-width/2;`)。**注意`box-sizing`属性对负外边框计算影响。**
+- **未知** 居中元素高宽：使用`absolute`定位，向下、向左移50%(`top:50%; left:50%;`)，再用`transform:translate(-50%, -50%);`反向移动。
+- 使用**flex**布局：父级设置`display:flex; justify-content:center; align-items:center;`。**注意：如果有多个元素，根据`flex-direction`属性值不同会出现不同的效果。**

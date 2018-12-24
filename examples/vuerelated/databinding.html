@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue双向绑定原理及实现</title>
+    <style>
+    #app {
+        margin: 20px auto;
+        width: 700px;
+        padding: 50px;
+        text-align: center;
+        border: 2px solid #ddd;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="number">
+        <button type="button" v-click="increment">increment</button>
+        <h3 v-bind="number"></h3>
+    </div>
+    <script type="text/javascript">
+    // 自定义Vue类，传入参数options包括el(DOM元素), data, methods(事件方法)等属性。
+    class MyVue {
+        constructor(options) {
+            this.$options = options;
+            this.$el = document.querySelector(options.el);
+            this.$data = options.data;
+            this.$methods = options.methods;
+
+            this._binding = {};
+            // 内部变量_binding保存model与view的映射关系。data里的属性名做为key
+            this._observe(this.$data);
+            // 内部方法_observe用于向data中的数据用defineProperty添加setter和getter方法，以观察数据变更
+            this._compile(this.$el);
+            // 内部方法_compile用于更新页面模板
+        }
+        _observe(dataObj) {
+            let valueObj = {};
+            // valueObj用于保存数据
+            for (let key in dataObj) {
+                if (dataObj.hasOwnProperty(key)) {
+                    this._binding[key] = {
+                        _directives: []
+                    };
+                    // 加入监听数据对象，暂未加入订阅对象。
+                    // 订阅对象根据不同指令，在_compile方法中添加
+                    valueObj[key] = dataObj[key];
+
+                    if (typeof valueObj[key] === 'object') {
+                        this._obverse(valueObj[key]);
+                    }
+                    const self = this;
+                    Object.defineProperty(this.$data, key, {
+                        enumerable: true,
+                        configurable: true,
+                        get: function() {
+                            console.log(`get the value of ${key}: ${valueObj[key]}`);
+                            return valueObj[key];
+                        },
+                        set: function(newVal) {
+                            console.log(`set ${key} to new value: ${newVal}`);
+                            if (valueObj[key] !== newVal) {
+                                valueObj[key] = newVal;
+                                // 注意其中this对象
+                                console.log(`this === self.$data: ${this === self.$data}`);
+                                // 通知_binding中的订阅者(Wathcher实例)更新
+                                self._binding[key]._directives.forEach(function(item) {
+                                    item.update();
+                                })
+                                
+                            }
+                        }
+
+                    })
+                }
+            }
+        }
+        _compile(rootEl) {
+            const self = this;
+            let childNodes = rootEl.children;
+            // children返回Node子节点(不含有文本、注释等节点)
+            for (let i = 0; i < childNodes.length; i++) {
+                let node = childNodes[i];
+                // 递归遍历所有子节点
+                if (node.children.length) {
+                    this._compile(node);
+                }
+
+                // 根据自定义指令实例化Wathcer，并添加进_bingding
+                // 1. v-click: 监听click事件，并将vm实例数据绑定到处理函数this上
+                if (node.hasAttribute('v-click')) {
+                    console.log(`the node "${node.tagName}#${node.id}" has v-click atrribute`);
+
+                    node.onclick = (function() {
+                        let handlerName = node.getAttribute('v-click');
+                        return self.$methods[handlerName].bind(self.$data);
+                    })();
+                }
+                // 2. v-model: 监听input事件，_bindging添加订阅实例，设置vm.$data值与输入值一致
+                if (node.hasAttribute('v-model') && (node.tagName === 'INPUT' || node.tagName === 'TEXTAREA')) {
+                    console.log(`the node "${node.tagName}#${node.id}" has v-model hasAttribute`);
+                    
+                    node.oninput = (function() {
+                        console.log()
+                        let dataKey = node.getAttribute('v-model');
+                        // _binding中添加订阅者
+                        self._binding[dataKey]._directives.push(
+                                new Watcher('input', node, self, dataKey, 'value')
+                            )
+                        return function() {
+                            self.$data[dataKey] = node.value;
+                        }
+                    })();
+                }
+                // 3. v-bind: _binding中添加订阅实例
+                if (node.hasAttribute('v-bind')) {
+                    console.log(`the node "${node.tagName}#${node.id}" has v-bind hasAttribute`);
+                    let dataKey = node.getAttribute('v-bind');
+                    self._binding[dataKey]._directives.push(new Watcher('text', node, self, dataKey, 'innerText'))
+                }
+
+            }
+        }
+    }
+
+    class Watcher {
+        // 数据属性的订阅者
+        // el: DOM元素; vm: MyVue实例对象; key: vm.$data中数据的键值; attr: DOM元素上的变更的属性名
+        constructor(name, el, vm, key, attr) {
+            this.name = name;
+            this.el = el;
+            this.vm = vm;
+            this.key = key;
+            this.attr = attr;
+
+            // 初始化时更新view
+            this.update();
+        }
+        update() {
+            console.log(`${this.key} is going to update in element: "${this.el.tagName}#${this.el.id}"`);
+            this.el[this.attr] = this.vm.$data[this.key]
+        }
+    }
+    
+    </script>
+    <script type="text/javascript">
+    var app = new MyVue({
+        el: '#app',
+        data: {
+            number: 0,
+            test: 3
+        },
+        methods: {
+            increment: function() {
+                this.number ++;
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
