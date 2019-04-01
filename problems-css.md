@@ -2,17 +2,20 @@
 
 ## 1. [CSS样式应用优先级](#css-priority)
 >参考链接：
+- CSS权威指南第三版
 - [CSS样式优先级(菜鸟教程)](http://www.runoob.com/w3cnote/css-style-priority.html)
-- [CSS选择器优先级总结(博客园)](https://www.cnblogs.com/zxjwlh/p/6213239.html)
 - [CSS从右往左的解析顺序(CSDN)](https://blog.csdn.net/jinboker/article/details/52126021)
 
 优先规则:
-1. 最近的祖先样式 > 其他祖先样式 (就近原则)
-2. 直接样式 > 祖先样式 (就近原则)
-3. 选择器优先级: 内联 > #id > .class = [attr] = :pseudo-class > tag = :pseudo-element
-4. 当某个元素被多个组合选择符命中时，根据**规则3**层级的从高到低的命中个数比较，相同则采取“就近原则”。如: `#id > .class1 .class2`， `div>.class1 = p.class1`
-5. 设置了`!important`的属性拥有最高优先级，都有再按以上规则计算
-6. 对于引用的文件，按照引入位置，可以按以上规则解释  
+1. 所有引入的CSS样式文件为同步加载解析，与文档头部定义的样式表无优先级差别，相同优先度的后出现CSS样式会**覆盖**前面出现的CSS样式。
+2. 浏览器根据选择器计算出对应特殊性，根据特殊性的值选择优先声明，特殊性的值表述为: x,x,x,x，左边为高位，高位值优于低位值。
+3. 元素**内联样式**上的特殊性为 1,0,0,0。
+4. 每个选择器ID，特殊值加 0,1,0,0。 #id
+5. 每个类属性、属性选择或伪类，特殊值加 0,0,1,0。 .class = [attr] = :pseudo-class
+6. 每个元素和伪元素，特殊值加 0,0,0,1。 tag = :pseudo-element
+7. 结合符(空格，>，+符号)和通配符(*)**没有特殊性**。
+8. !important关键字**优先于特殊性**，!important样式之间才有比较性。
+9. 大多数框模型属性(包括margin、padding、background、border)是**不能继承**的。
 
 ## 2. [CSS伪元素与伪类](#css-pesudo-class-element)
 ### a) [伪类:](#pesudo-classes)
