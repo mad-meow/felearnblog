@@ -16,6 +16,7 @@
 7. 结合符(空格，>，+符号)和通配符(*)**没有特殊性**。
 8. !important关键字**优先于特殊性**，!important样式之间才有比较性。
 9. 大多数框模型属性(包括margin、padding、background、border)是**不能继承**的。
+>**注意：**选择器[id="id"]是属性选择器，其优先级是 0,0,1,0。
 
 ## 2. [CSS伪元素与伪类](#css-pesudo-class-element)
 ### a) [伪类:](#pesudo-classes)
