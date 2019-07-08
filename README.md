@@ -10,7 +10,7 @@ CSS特性及使用问题
 ## [DOM JS问题集](https://yantq-sjtu.github.io/felearnblog/problems-dom-js)
 浏览器中JS问题及解决方法
 
-## [DOM JS问题集](https://yantq-sjtu.github.io/felearnblog/problems-js)
+## [JS编程特性问题集](https://yantq-sjtu.github.io/felearnblog/problems-js)
 JS新特性及编程思想
 
 ## [Vue相关](https://yantq-sjtu.github.io/felearnblog/vuerelated)
