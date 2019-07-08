@@ -1,10 +1,10 @@
 # ES7新特性 -- 装饰器(decorator)
 
 >参考链接：
-- [ES7 Decorator 装饰器 | 淘宝前端团队](https://segmentfault.com/p/1210000009968000/read)
+- [ES7 Decorator 装饰器-淘宝前端团队](https://segmentfault.com/p/1210000009968000/read)
 - [Decorators in ES7](http://www.liuhaihua.cn/archives/115548.html)
-- [设计模式——装饰模式（Decorator）](https://blog.csdn.net/zhshulin/article/details/38665187)
-- [装饰器模式 | 菜鸟教程](https://www.runoob.com/design-pattern/decorator-pattern.html)
+- [设计模式-装饰模式（Decorator）](https://blog.csdn.net/zhshulin/article/details/38665187)
+- [装饰器模式-菜鸟教程](https://www.runoob.com/design-pattern/decorator-pattern.html)
 
 ## 1. 装饰器模式
 装饰器模式又称为包装（wrapper）模式，是继承关系的一个替代方案。这种设计模式用来在不改变原有类的基础上，向其动态的添加额外的功能，而生成的示例将有和原来一样的接口（但一些接口的功能进行了扩展）。
