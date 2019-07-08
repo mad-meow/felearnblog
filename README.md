@@ -5,10 +5,13 @@
 我在学习《CSS揭秘》中的实践代码及扩展问题解决
 
 ## [CSS问题集](https://yantq-sjtu.github.io/felearnblog/problems-css)
-记录各处看到、用到的CSS问题、知识点及解决方法
+CSS特性及使用问题
 
-## [JS问题集](https://yantq-sjtu.github.io/felearnblog/problems-js)
-记录各处看到、用到的JS问题、知识点及解决方法
+## [DOM JS问题集](https://yantq-sjtu.github.io/felearnblog/problems-dom-js)
+浏览器中JS问题及解决方法
+
+## [DOM JS问题集](https://yantq-sjtu.github.io/felearnblog/problems-js)
+JS新特性及编程思想
 
 ## [Vue相关](https://yantq-sjtu.github.io/felearnblog/vuerelated)
 记录Vue使用学习中的问题或思考

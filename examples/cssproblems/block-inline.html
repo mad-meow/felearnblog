@@ -39,12 +39,15 @@
                 display: inline-block;
                 border: 2px dotted palegoldenrod;
             }
+            .p-with-border {
+                border: 1px solid brown;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="block-ele" style="height:50px">
-                块级div右侧位置不可用
+                块级div右侧区域默认用margin完全填充
             </div>
             <div class="block-ele" style="overflow:hidden">
                 <div class="block-ele-inner-l1">
@@ -58,7 +61,7 @@
             </div>
             <div class="block-ele" style="width:auto;height:auto">
                 <p>行内元素的示例</p>
-                <p>|文本1|<span>|span1|</span><span>|span2与1之间无空格|</span> <span>|span3与2之间有空格|</span></p>
+                <p class="p-with-border">|文本1|<span>|span1|</span><span>|span2与1之间无空格|</span> <span>|span3与2之间有空格|</span></p>
                 <p style="word-break: break-all"><span class="span-border">垂直方向外边距(margin)无效；宽高设置无效</span><span>无样式span</span><span class="span-border">水平方向内/外边距有效</span>|其他文本，本p元素有设置word-break:break-all，使得文本可跨行，aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa|</p>
                 <div>
                     <p style="color:maroon">display:inline 示例。对inlne-block元素设置高度及外边框后，会打乱对齐位置。</p>
